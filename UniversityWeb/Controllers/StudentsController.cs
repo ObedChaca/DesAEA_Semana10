@@ -17,7 +17,7 @@ namespace UniversityWeb.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Student.ToList());
+            return View(db.Student.Where(x => x.Enable == true).ToList());
         }
 
         // GET: Students/Details/5
@@ -50,6 +50,7 @@ namespace UniversityWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                student.Enable = true;
                 db.Student.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,7 +111,8 @@ namespace UniversityWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Student student = db.Student.Find(id);
-            db.Student.Remove(student);
+            db.Entry(student).State = EntityState.Modified;
+            student.Enable = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

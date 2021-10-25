@@ -39,8 +39,8 @@ namespace UniversityWeb.Controllers
         // GET: Enrollments/Create
         public ActionResult Create()
         {
-            ViewBag.CourseID = new SelectList(db.Course, "CourseID", "Title");
-            ViewBag.StudentID = new SelectList(db.Student, "StudentID", "LastName");
+            ViewBag.CourseID = new SelectList(db.Course.Where(x => x.Enable==true), "CourseID", "Title");
+            ViewBag.StudentID = new SelectList(db.Student.Where(x => x.Enable == true), "StudentID", "LastName");
             return View();
         }
 
@@ -58,8 +58,8 @@ namespace UniversityWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CourseID = new SelectList(db.Course, "CourseID", "Title", enrollment.CourseID);
-            ViewBag.StudentID = new SelectList(db.Student, "StudentID", "LastName", enrollment.StudentID);
+            ViewBag.CourseID = new SelectList(db.Course.Where(x => x.Enable == true), "CourseID", "Title", enrollment.CourseID);
+            ViewBag.StudentID = new SelectList(db.Student.Where(x => x.Enable == true), "StudentID", "LastName", enrollment.StudentID);
             return View(enrollment);
         }
 

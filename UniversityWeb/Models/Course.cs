@@ -11,7 +11,6 @@ namespace UniversityWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Course
     {
@@ -22,13 +21,10 @@ namespace UniversityWeb.Models
         }
     
         public int CourseID { get; set; }
-        [Required]
-        [StringLength(50)]
         public string Title { get; set; }
-        [Required]
-        [Range(1,1)]        
         public Nullable<int> Credits { get; set; }
-
+        public Nullable<bool> Enable { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollment { get; set; }
     }

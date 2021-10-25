@@ -24,6 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.EnrollmentDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enable)
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +43,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EnrollmentDate)
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.Enable.Value)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) |
